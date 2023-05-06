@@ -1,0 +1,17 @@
+name: Deploy Azure Function
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout GitHub Repo'
+      uses: actions/checkout@v2
+    - name: 'Deploy to Azure Function App'
+      uses: azure/functions-action@v1
+      with:
+        app-name: <Your_Function_App_Name>
+        package: <Path_to_your_Function_App_code>
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
